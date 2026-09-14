@@ -134,8 +134,8 @@ export default {
         });
       }
     }
-    if (path === "/ai-processing" || path === "/ai-processing.html") {
-      const asset = DASHBOARD["pages/ai-processing.html"];
+    if (path === "/eula" || path === "/eula.html") {
+      const asset = DASHBOARD["pages/eula.html"];
       if (asset) {
         return new Response(asset.content, {
           status: 200,

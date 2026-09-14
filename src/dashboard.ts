@@ -1538,14 +1538,14 @@ export default config;
 `,
     type: "application/javascript",
   },
-  "pages/ai-processing.html": {
+  "pages/eula.html": {
     content: `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Processing — FreeSurf</title>
-  <meta name="description" content="How FreeSurf processes your data with AI models, which providers we use, and what happens to the results." />
+  <title>End User License Agreement — FreeSurf</title>
+  <meta name="description" content="End User License Agreement (EULA) for FreeSurf apps and services." />
   <style>
     :root { --bg: #0b1020; --card: #111937; --text: #e8ecff; --muted: #b3bddf; --accent: #5b8cff; --border: #2a3568; }
     * { box-sizing: border-box; }
@@ -1553,14 +1553,11 @@ export default config;
     a { color: var(--accent); }
     .wrap { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
     h1 { font-size: 2rem; margin-bottom: 8px; }
-    h2 { font-size: 1.25rem; margin-top: 32px; color: var(--accent); }
+    h2 { font-size: 1.15rem; margin-top: 28px; color: var(--accent); }
     p, li { color: var(--muted); font-size: 0.95rem; margin: 8px 0; }
     ul { padding-left: 20px; }
     .updated { font-size: 0.85rem; color: #5f6b7a; margin-bottom: 32px; }
     .entity { font-size: 0.9rem; color: #5f6b7a; margin-bottom: 24px; padding: 16px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); }
-    .table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem; }
-    .table th, .table td { text-align: left; padding: 10px; border: 1px solid var(--border); color: var(--muted); }
-    .table th { color: var(--text); background: var(--card); }
     hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
     footer { margin-top: 48px; font-size: 0.8rem; color: #5f6b7a; }
     footer a { color: var(--muted); }
@@ -1568,65 +1565,91 @@ export default config;
 </head>
 <body>
   <div class="wrap">
-    <h1>AI Processing Disclosure</h1>
-    <p class="updated">Last updated: September 5, 2026</p>
+    <h1>End User License Agreement</h1>
+    <p class="updated">Last updated: September 9, 2026</p>
 
-    <p>Several FreeSurf tools use artificial-intelligence models to produce their output. This page explains the AI
-    models we use, who runs them, what we send to them, and what happens to the results. It complements our
-    <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>.</p>
+    <div class="entity">
+      FreeSurf is a product of <strong>Planting Moon LLC</strong>, located at 5830 E 2nd St, Ste 7000 #35119, Casper, Wyoming 82609.<br />
+      Contact: <a href="mailto:support@freesurf.tools">support@freesurf.tools</a>
+    </div>
 
-    <h2>1. Where AI models run</h2>
-    <p>We choose the AI infrastructure that best fits each tool, and we may switch between providers over time. AI
-    processing currently runs on one or more of the following:</p>
+    <p>This End User License Agreement ("EULA") is a binding agreement between you ("you" or "End User") and Planting Moon LLC ("Company," "we," "us," or "our"), governing your use of FreeSurf applications and any related documentation (collectively, the "App").</p>
+    <p>By downloading, installing, or using the App, you agree to be bound by the terms of this EULA. If you do not agree to this EULA, do not download, install, or use the App.</p>
+
+    <h2>License Grant</h2>
+    <p>Subject to your compliance with this EULA, the Company grants you a limited, non-exclusive, non-transferable, revocable license to download, install, and use the App on a device that you own or control, solely for your personal, non-commercial purposes, and as permitted by the usage rules of the Apple App Store or Google Play Store, as applicable.</p>
+    <p>This license does not allow you to use the App on any device you do not own or control, and you may not distribute or make the App available over a network where it could be used by multiple devices at the same time.</p>
+
+    <h2>License Restrictions</h2>
+    <p>You agree not to, and you will not permit others to:</p>
     <ul>
-      <li><strong>Together AI</strong> — a hosted, serverless GPU inference provider (used for most of our models today).</li>
-      <li><strong>OpenRouter</strong> — a hosted inference aggregator (used for some tools and fallbacks).</li>
-      <li><strong>Self-hosted RunPod</strong> — our own rented GPU infrastructure (used for specific models we run ourselves).</li>
+      <li>Copy, modify, adapt, translate, or create derivative works of the App, in whole or in part</li>
+      <li>Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the App, except to the extent such restriction is expressly prohibited by applicable law</li>
+      <li>Rent, lease, lend, sell, sublicense, assign, distribute, publish, transfer, or otherwise make the App available to any third party</li>
+      <li>Remove, alter, or obscure any proprietary notices, labels, or marks on the App</li>
+      <li>Use the App in any manner that violates applicable law, regulation, or the rights of any third party</li>
+      <li>Use the App to transmit any viruses, malware, or other harmful code</li>
+      <li>Use the App in connection with any automated system, bot, or scraping tool not authorized by us</li>
     </ul>
-    <p>We generally prefer <strong>open-source models</strong> (for example, open-weight text, vision, speech, and
-    text-to-speech models). We use a closed-source model only when it is necessary to achieve an acceptable result for
-    a particular feature.</p>
 
-    <h2>2. What we send to an AI provider</h2>
-    <p>Depending on the tool you are using, the <strong>inputs you provide</strong> are sent to the active provider's
-    infrastructure solely to generate the result you requested:</p>
-    <table class="table">
-      <thead><tr><th>Tool</th><th>Inputs sent to the AI provider</th></tr></thead>
-      <tbody>
-        <tr><td>Natural Reader</td><td>Text you ask to be read aloud</td></tr>
-        <tr><td>Transcriber</td><td>Audio you ask to be transcribed</td></tr>
-        <tr><td>Calorie Tracker</td><td>Food photos and/or food descriptions</td></tr>
-        <tr><td>English Tutor</td><td>Your spoken or typed replies, and context used to generate a correction</td></tr>
-      </tbody>
-    </table>
-    <p>Your inputs are shared only with the provider(s) running the model for that request. They are used strictly to
-    produce the output; we do not use them to sell to or profile you, and we instruct providers not to use submitted
-    content to train their models.</p>
+    <h2>Ownership and Intellectual Property</h2>
+    <p>The App is licensed, not sold, to you. The Company and its licensors own and retain all right, title, and interest in and to the App, including all copyrights, patents, trademarks, trade secrets, and other intellectual property rights therein.</p>
+    <p>This EULA does not grant you any ownership rights in the App. All rights not expressly granted to you in this EULA are reserved by the Company and its licensors.</p>
+    <p>The names "FreeSurf," "FreeSurf Transcriber," "FreeSurf Reader," "FreeSurf Calorie Tracker," and all related names, logos, product and service names, designs, and slogans are trademarks of the Company or its affiliates. You may not use such marks without the prior written permission of the Company.</p>
 
-    <h2>3. What happens to the results</h2>
-    <p>The result returned by the AI provider is delivered back to you in the app. Depending on how you are using the
-    tool, results may be:</p>
-    <ul>
-      <li><strong>Stored locally</strong> on your device (for example, generated audio or saved recordings), and</li>
-      <li><strong>Associated with your account</strong> and stored in our database if you are signed in, so your history
-      and content can sync across devices.</li>
-    </ul>
-    <p>Where a result is associated with a user, it is tied to your account and subject to the same access, retention,
-    and deletion rights described in our <a href="/privacy">Privacy Policy</a>.</p>
+    <h2>Third-Party Services</h2>
+    <p>The App may display, include, or make available third-party content, services, or integrations, including but not limited to AI processing services, voice infrastructure providers, and payment processors. The Company does not assume responsibility for third-party content or services. Any use of third-party services is subject to the applicable third party's terms and policies, and you use them at your own risk.</p>
 
-    <h2>4. Model training</h2>
-    <p>Content you submit is <strong>never used to train or fine-tune</strong> our models, and we do not permit the
-    providers we use to train on it for their own benefit.</p>
+    <h2>User Content and AI-Generated Outputs</h2>
+    <p>You retain ownership of the content you submit through the App, such as audio recordings, uploaded documents, notes, and messages ("User Content"). By submitting User Content, you grant the Company a worldwide, royalty-free, non-exclusive license to use, process, store, and transmit your User Content solely as necessary to provide the App's features.</p>
+    <p>The App may generate responses, transcripts, summaries, notes, and other outputs using artificial intelligence ("AI Outputs"). AI Outputs are generated algorithmically and may be incomplete, inaccurate, or unsuitable for high-risk decisions. You are solely responsible for reviewing and evaluating AI Outputs before relying on them. The Company does not warrant the accuracy, completeness, or fitness of AI Outputs for any particular purpose.</p>
 
-    <h2>5. Data minimization</h2>
-    <p>We send only the information required for the specific request, we do not combine your AI inputs with unrelated
-    personal data, and we rely on providers that delete or do not retain submitted content beyond what is required to
-    fulfill the request. If you have questions, contact us at
-    <a href="mailto:support@freesurf.tools">support@freesurf.tools</a>.</p>
+    <h2>Subscriptions and Automatic Renewal</h2>
+    <p>Certain features of the App may require a paid subscription. Subscription terms, pricing, and features are described within the App and in the applicable app store listing.</p>
+    <p>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current subscription period. Your account will be charged for renewal within 24 hours before the end of the current period, at the then-current subscription price.</p>
+    <p>You can manage and cancel subscriptions through your Apple ID account settings or Google Play account settings, as applicable. Deleting the App does not cancel your subscription.</p>
+
+    <h2>Disclaimer of Warranties</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE," WITH ALL FAULTS AND WITHOUT WARRANTY OF ANY KIND. THE COMPANY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, QUIET ENJOYMENT, ACCURACY, AND NON-INFRINGEMENT OF THIRD-PARTY RIGHTS.</p>
+    <p>WITHOUT LIMITING THE FOREGOING, THE COMPANY DOES NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR FREE OF HARMFUL COMPONENTS, OR THAT ANY DEFECTS WILL BE CORRECTED. YOU ASSUME ALL RISK FOR ANY DAMAGE TO YOUR DEVICE OR DATA THAT MAY RESULT FROM YOUR USE OF THE APP.</p>
+
+    <h2>Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE COMPANY, ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION LOSS OF PROFITS, LOSS OF DATA, BUSINESS INTERRUPTION, PERSONAL INJURY, OR PROPERTY DAMAGE, ARISING OUT OF OR RELATED TO YOUR USE OF OR INABILITY TO USE THE APP, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY (CONTRACT, TORT, OR OTHERWISE), EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+    <p>IN NO EVENT SHALL THE COMPANY'S TOTAL AGGREGATE LIABILITY TO YOU FOR ALL CLAIMS ARISING OUT OF OR RELATED TO THIS EULA EXCEED THE AMOUNT YOU PAID FOR THE APP, IF ANY, IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE CLAIM, OR FIFTY UNITED STATES DOLLARS (USD \$50.00), WHICHEVER IS GREATER.</p>
+
+    <h2>Termination</h2>
+    <p>This EULA is effective until terminated by you or the Company. The Company may terminate this EULA at any time, with or without notice, if you fail to comply with any term of this EULA. Upon termination, all rights granted to you under this EULA shall immediately cease, and you must cease all use of the App and delete all copies of the App from your devices.</p>
+
+    <h2>Governing Law and Dispute Resolution</h2>
+    <p>This EULA shall be governed by and construed in accordance with the laws of the State of Wyoming, without regard to its conflict of law principles. Any dispute arising out of or relating to this EULA shall first be attempted to be resolved informally by contacting us at <a href="mailto:support@freesurf.tools">support@freesurf.tools</a>. If the dispute cannot be resolved informally within thirty (30) days, either party may pursue resolution through binding arbitration in Casper, Wyoming, or through small claims court if the claim qualifies.</p>
+    <p>You agree that any dispute resolution proceedings will be conducted only on an individual basis and not in a class, consolidated, or representative action.</p>
+
+    <h2>U.S. Government End Users</h2>
+    <p>The App and related documentation are "Commercial Items" as defined in 48 C.F.R. § 2.101, consisting of "Commercial Computer Software" and "Commercial Computer Software Documentation." If you are an agency, department, or other entity of the United States Government, your use of the App is subject to the terms of this EULA consistent with federal procurement law.</p>
+
+    <h2>Export Compliance</h2>
+    <p>You agree to comply with all applicable export and re-export control laws and regulations, including the Export Administration Regulations maintained by the U.S. Department of Commerce, and trade and economic sanctions maintained by the U.S. Treasury Department's Office of Foreign Assets Control. You represent that you are not located in, under the control of, or a national or resident of any country subject to U.S. embargo or sanctions, and that you are not listed on any U.S. Government list of prohibited or restricted parties.</p>
+
+    <h2>Apple App Store Additional Terms</h2>
+    <p>If you downloaded the App from the Apple App Store, the following additional terms apply:</p>
+    <p>This EULA is between you and the Company, not Apple Inc. ("Apple"). Apple is not responsible for the App or its content. Apple has no obligation whatsoever to furnish any maintenance or support services with respect to the App.</p>
+    <p>In the event of any failure of the App to conform to any applicable warranty, you may notify Apple, and Apple will refund the purchase price, if any, for the App to you. To the maximum extent permitted by applicable law, Apple will have no other warranty obligation whatsoever with respect to the App.</p>
+    <p>Apple is not responsible for addressing any claims by you or any third party relating to the App or your possession and/or use of the App, including but not limited to product liability claims, claims that the App fails to conform to any applicable legal or regulatory requirement, and claims arising under consumer protection, data protection, or similar legislation.</p>
+    <p>Apple and Apple's subsidiaries are third-party beneficiaries of this EULA. Upon your acceptance of this EULA, Apple will have the right (and will be deemed to have accepted the right) to enforce this EULA against you as a third-party beneficiary.</p>
+
+    <h2>General Provisions</h2>
+    <p>If any provision of this EULA is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect. The Company's failure to enforce any right or provision of this EULA shall not constitute a waiver of such right or provision.</p>
+    <p>This EULA, together with our Privacy Policy and Terms of Service (available within the App and at <a href="https://freesurf.tools">freesurf.tools</a>), constitutes the entire agreement between you and the Company regarding your use of the App and supersedes all prior agreements and understandings.</p>
+    <p>The Company may update this EULA from time to time. Material changes will be communicated through the App or by email. Your continued use of the App after the effective date of any changes constitutes your acceptance of the updated EULA.</p>
+
+    <h2>Contact Information</h2>
+    <p>For questions about this EULA, or to report a violation, contact us at <a href="mailto:support@freesurf.tools">support@freesurf.tools</a>.</p>
+    <p>Planting Moon LLC<br />5830 E 2nd St, Ste 7000 #35119, Casper, WY 82609</p>
 
     <hr />
+
     <footer>
-      <a href="/">FreeSurf</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/ai-processing">AI Processing</a>
+      <a href="/">FreeSurf</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/eula">EULA</a>
     </footer>
   </div>
 </body>
@@ -1662,7 +1685,7 @@ export default config;
 <body>
   <div class="wrap">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: August 7, 2026</p>
+    <p class="updated">Last updated: September 9, 2026</p>
 
     <div class="entity">
       FreeSurf is a product of <strong>Planting Moon LLC</strong>, located at 5830 E 2nd St, Ste 7000 #35119, Casper, Wyoming 82609.<br />
@@ -1688,12 +1711,25 @@ export default config;
     operate the service, so we avoid storing additional profile details (such as your name or photo) from these sign-in
     providers where possible.</p>
 
-    <p><strong>AI Processing:</strong> Some FreeSurf tools use AI models to generate results. Models run on hosted
-    inference providers (currently <strong>Together AI</strong>, <strong>OpenRouter</strong>, or our own self-hosted
-    <strong>RunPod</strong> GPU), and we may switch between them. We generally use open-source models. Your text,
-    audio, and photos are shared only with the provider running the model for that request, strictly to produce the
-    output, and are not used to train models. See our <a href="/ai-processing">AI Processing Disclosure</a> for full
-    details on providers, inputs, and what happens to results:</p>
+    <span id="ai-processing"></span>
+    <p><strong>AI Processing:</strong> Some FreeSurf tools use AI to generate results. Before any of your content is sent to an AI provider, the app asks for your permission and explains what is being sent. FreeSurf is currently subscription-first and does not run third-party advertising. AI content is sent only to the provider required to produce the result you requested and is transmitted through our own servers. This section explains where AI models run, what we send to them, and what happens to the results.</p>
+    <p><strong>Where AI models run.</strong> We choose the AI infrastructure that best fits each tool and may switch providers over time. AI processing runs on one or more of the following:</p>
+    <ul>
+      <li><strong>Together AI</strong> — a hosted, serverless GPU inference provider (used for most of our models today; Together Computer, Inc., <a href="https://together.ai">together.ai</a>).</li>
+      <li><strong>OpenRouter</strong> — a hosted inference aggregator (used for some tools and fallbacks).</li>
+      <li><strong>Self-hosted RunPod</strong> — our own rented GPU infrastructure (for specific models we run ourselves).</li>
+    </ul>
+    <p>We generally prefer open-source models (for example, open-weight text, vision, speech, and text-to-speech models). We use a closed-source model only when necessary to achieve an acceptable result for a particular feature.</p>
+    <p><strong>What we send to an AI provider.</strong> Depending on the tool, the inputs you provide are sent to the active provider's infrastructure solely to generate the result you requested:</p>
+    <ul>
+      <li><strong>Natural Reader:</strong> text you ask to be read aloud.</li>
+      <li><strong>Transcriber:</strong> audio you ask to be transcribed.</li>
+      <li><strong>Calorie Tracker:</strong> food photos and/or food descriptions.</li>
+    </ul>
+    <p>Your inputs are shared only with the provider(s) running the model for that request, strictly to produce the output. We do not use them to sell to or profile you, and we instruct providers not to use submitted content to train their models.</p>
+    <p><strong>What happens to the results.</strong> The result returned by the AI provider is delivered back to you in the app. Depending on how you use the tool, results may be stored locally on your device (for example, generated audio or saved recordings) and, if you are signed in, associated with your account and stored in our database so your history can sync across devices. Where a result is associated with a user, it is subject to the same access, retention, and deletion rights described in this Privacy Policy.</p>
+    <p><strong>No training.</strong> Content you submit is never used to train or fine-tune our models, and we do not permit the providers we use to train on it for their own benefit.</p>
+    <p><strong>Data minimization.</strong> We send only the information required for the specific request, we do not combine your AI inputs with unrelated personal data, and we rely on providers that delete or do not retain submitted content beyond what is required to fulfill the request. Together AI and our other providers process this content only to complete the request and provide data protection that meets or exceeds our own standards.</p>
 
     <h2>2. How We Use Information</h2>
     <ul>
@@ -1706,22 +1742,10 @@ export default config;
     </ul>
     <p>We do not sell personal information. We do not use your invoice data, link profiles, posts, or AI-generated content for advertising purposes.</p>
 
-    <h2>3. Advertising &amp; Third-Party Ad Networks</h2>
-    <p>FreeSurf apps display advertisements through third-party ad networks such as Google AdMob, AppLovin MAX, and similar providers. To serve and measure ads, these networks may collect:</p>
-    <ul>
-      <li><strong>Identifiers:</strong> Device advertising ID (IDFA on iOS, AAID on Android)</li>
-      <li><strong>Location:</strong> Coarse location derived from IP address (not precise GPS)</li>
-      <li><strong>Usage Data:</strong> Product interaction data (e.g., ad views, clicks)</li>
-      <li><strong>Diagnostics:</strong> Crash logs and performance data</li>
-    </ul>
-    <p>This data is shared with our ad mediation partners solely for ad delivery and measurement. No personal information from your FreeSurf account or tool usage (invoices, transcripts, meal logs, recordings) is shared with advertisers. Ad-supported functionality is disclosed in each app's store listing.</p>
-    <p><strong>Android Advertising ID (AD_ID):</strong> On Android devices, the Google Mobile Ads SDK accesses the Android Advertising ID for ad targeting, frequency capping, conversion tracking, and fraud prevention. The <code>com.google.android.gms.permission.AD_ID</code> permission is automatically included in our apps through the AdMob SDK library manifest. This permission is used solely to access the advertising identifier — no other Android permissions are requested for advertising purposes.</p>
-    <p>Before personalized ads are served, the app will request permission via Apple's App Tracking Transparency (ATT) prompt or Android's equivalent. You may opt out at any time through your device's privacy settings:</p>
-    <ul>
-      <li><strong>iOS:</strong> Settings → Privacy &amp; Security → Tracking → toggle off for the app. Or Settings → Privacy &amp; Security → Apple Advertising → turn off Personalized Ads.</li>
-      <li><strong>Android:</strong> Settings → Privacy → Ads → Delete advertising ID, or Settings → Google → Ads → Opt out of Ads Personalization.</li>
-    </ul>
-    <p>Non-personalized ads do not require tracking permission.</p>
+    <h2>3. Advertising, Tracking &amp; Attribution</h2>
+    <p>FreeSurf is currently a subscription-first product. The AI utility apps do not run third-party advertising, do not include advertising SDKs, and do not collect or use the Apple identifier for advertisers (IDFA) or the Android Advertising ID (AAID). We do not perform cross-app tracking, and therefore we do not show an Apple App Tracking Transparency (ATT) prompt.</p>
+    <p>For marketing measurement we rely on privacy-preserving, aggregate attribution (such as Apple's SKAdNetwork) that does not require personal data or tracking consent.</p>
+    <p>If we later introduce an ad-supported tier, this section will be updated before any advertising SDK is added, and any required tracking consent will be requested at that time.</p>
 
     <h2>4. Usage Analytics</h2>
     <p>To understand how our tools are used and to improve them, we may collect <strong>product analytics</strong> about
@@ -1742,7 +1766,6 @@ export default config;
       <li><strong>Cloudflare</strong> — web hosting, Workers, R2 storage, and KV</li>
       <li><strong>Together AI / OpenRouter</strong> — hosted AI inference providers</li>
       <li><strong>RunPod</strong> — our own GPU infrastructure for self-hosted AI models</li>
-      <li><strong>Google AdMob / AppLovin MAX</strong> — in-app advertising</li>
     </ul>
     <p>These providers process data on our behalf to deliver specific parts of the service.</p>
 
@@ -1753,7 +1776,7 @@ export default config;
       <li><strong>AI processing:</strong> Submitted text, audio, and photos are sent to the active AI inference
       provider to produce a result and are not retained there beyond the request. Generated results are saved locally
       on your device; if you are signed in, they may also be stored in our database and associated with your account
-      for cross-device access. See our <a href="/ai-processing">AI Processing Disclosure</a>.</li>
+      for cross-device access. See the AI Processing section above.</li>
       <li><strong>No model training:</strong> User content processed by our AI models is never used to train, fine-tune, or improve the models. Transcripts, audio, and images are used strictly for immediate real-time output.</li>
       <li><strong>Support requests:</strong> May be retained to resolve issues and document outcomes.</li>
     </ul>
@@ -1782,7 +1805,7 @@ export default config;
     <p>Planting Moon LLC<br />5830 E 2nd St, Ste 7000 #35119, Casper, WY 82609</p>
 
     <footer>
-      <a href="/">FreeSurf</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/ai-processing">AI Processing</a>
+      <a href="/">FreeSurf</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/eula">EULA</a>
     </footer>
   </div>
 </body>
@@ -2060,7 +2083,7 @@ export default config;
     <p>Planting Moon LLC<br />5830 E 2nd St, Ste 7000 #35119, Casper, WY 82609</p>
 
     <footer>
-      <a href="/">FreeSurf</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+      <a href="/">FreeSurf</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/eula">EULA</a>
     </footer>
   </div>
 </body>
