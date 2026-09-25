@@ -208,7 +208,7 @@ export function renderProfilePage(profile: Profile): string {
   </div>
   <script>
     function share() {
-      var url = '${FREESURF.URLS.home}/${profile.username}';
+      var url = '${FREESURF.URLS.home}/@${profile.username}';
       if (navigator.share) {
         navigator.share({ title: '${profile.username} | FreeSurf', url: url });
       } else {

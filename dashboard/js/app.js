@@ -324,8 +324,8 @@ let usernameAvailable = false;
 function renderEditor() {
   const isNewUser = !currentUser;
   const profile = currentUser || { displayName: "", bio: "", avatarUrl: "", theme: "minimal-dark", links: [] };
-  const publicUrl = currentUser?.username ? `https://freesurf.tools/${currentUser.username}` : null;
-  const displayUrl = currentUser?.username ? `freesurf.tools/${currentUser.username}` : null;
+  const publicUrl = currentUser?.username ? `https://freesurf.tools/@${currentUser.username}` : null;
+  const displayUrl = currentUser?.username ? `freesurf.tools/@${currentUser.username}` : null;
 
   const PLATFORM_LABELS = { twitter: "Twitter / X", instagram: "Instagram", youtube: "YouTube", tiktok: "TikTok", github: "GitHub", linkedin: "LinkedIn" };
 
@@ -388,7 +388,7 @@ function renderEditor() {
         <div class="form-group" style="margin-top:1rem;">
           <label class="form-label">Your URL / handle</label>
           <div class="claim-form" style="margin-bottom:0;">
-            <div class="claim-prefix">freesurf.tools/</div>
+            <div class="claim-prefix">freesurf.tools/@</div>
             <input type="text" class="form-input" id="edit-username" value="${escapeAttr(profile.username)}" maxlength="30" style="border-radius:0 var(--radius) var(--radius) 0;">
           </div>
           <p id="username-status" style="font-size:0.8rem; margin-top:0.35rem; min-height:1.2em;">&nbsp;</p>
@@ -402,7 +402,7 @@ function renderEditor() {
         <div class="form-group">
           <label class="form-label">Choose your URL</label>
           <div class="claim-form" style="margin-bottom:0;">
-            <div class="claim-prefix">freesurf.tools/</div>
+            <div class="claim-prefix">freesurf.tools/@</div>
             <input type="text" class="form-input" id="edit-username" placeholder="yourname" maxlength="30" style="border-radius:0 var(--radius) var(--radius) 0;">
           </div>
           <p id="username-status" style="font-size:0.8rem; margin-top:0.35rem; min-height:1.2em;">&nbsp;</p>
@@ -532,7 +532,7 @@ function bindEditor() {
   const copyBtn = document.getElementById("copy-url");
   if (copyBtn) {
     copyBtn.addEventListener("click", () => {
-      const url = `https://freesurf.tools/${currentUser.username}`;
+      const url = `https://freesurf.tools/@${currentUser.username}`;
       navigator.clipboard.writeText(url).then(() => {
         copyBtn.textContent = "Copied!";
         setTimeout(() => { copyBtn.textContent = "Copy"; }, 2000);
@@ -793,7 +793,7 @@ async function checkUsername(username, statusEl) {
     if (!input || input.value !== username) return;
 
     if (res.available) {
-      statusEl.textContent = "\u2713 freesurf.tools/" + username + " is available!";
+      statusEl.textContent = "\u2713 freesurf.tools/@" + username + " is available!";
       statusEl.style.color = "var(--success)";
       usernameAvailable = true;
     } else {

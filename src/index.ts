@@ -157,9 +157,9 @@ export default {
     }
 
     // --- Public profile page ---
-    // /:username or /:username/links
-    const linksMatch = path.match(/^\/([a-z0-9._-]{3,30})\/links$/);
-    const usernameMatch = linksMatch || path.match(/^\/([a-z0-9._-]{3,30})$/);
+    // /@username, /@username/links (also accept the legacy /username form)
+    const linksMatch = path.match(/^\/@?([a-z0-9._-]{3,30})\/links$/);
+    const usernameMatch = linksMatch || path.match(/^\/@?([a-z0-9._-]{3,30})$/);
     if (usernameMatch && request.method === "GET") {
       const username = usernameMatch[1];
 

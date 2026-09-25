@@ -655,8 +655,8 @@ let usernameAvailable = false;
 function renderEditor() {
   const isNewUser = !currentUser;
   const profile = currentUser || { displayName: "", bio: "", avatarUrl: "", theme: "minimal-dark", links: [] };
-  const publicUrl = currentUser?.username ? \`https://freesurf.tools/\${currentUser.username}\` : null;
-  const displayUrl = currentUser?.username ? \`freesurf.tools/\${currentUser.username}\` : null;
+  const publicUrl = currentUser?.username ? \`https://freesurf.tools/@\${currentUser.username}\` : null;
+  const displayUrl = currentUser?.username ? \`freesurf.tools/@\${currentUser.username}\` : null;
 
   const PLATFORM_LABELS = { twitter: "Twitter / X", instagram: "Instagram", youtube: "YouTube", tiktok: "TikTok", github: "GitHub", linkedin: "LinkedIn" };
 
@@ -719,7 +719,7 @@ function renderEditor() {
         <div class="form-group" style="margin-top:1rem;">
           <label class="form-label">Your URL / handle</label>
           <div class="claim-form" style="margin-bottom:0;">
-            <div class="claim-prefix">freesurf.tools/</div>
+            <div class="claim-prefix">freesurf.tools/@</div>
             <input type="text" class="form-input" id="edit-username" value="\${escapeAttr(profile.username)}" maxlength="30" style="border-radius:0 var(--radius) var(--radius) 0;">
           </div>
           <p id="username-status" style="font-size:0.8rem; margin-top:0.35rem; min-height:1.2em;">&nbsp;</p>
@@ -733,7 +733,7 @@ function renderEditor() {
         <div class="form-group">
           <label class="form-label">Choose your URL</label>
           <div class="claim-form" style="margin-bottom:0;">
-            <div class="claim-prefix">freesurf.tools/</div>
+            <div class="claim-prefix">freesurf.tools/@</div>
             <input type="text" class="form-input" id="edit-username" placeholder="yourname" maxlength="30" style="border-radius:0 var(--radius) var(--radius) 0;">
           </div>
           <p id="username-status" style="font-size:0.8rem; margin-top:0.35rem; min-height:1.2em;">&nbsp;</p>
@@ -863,7 +863,7 @@ function bindEditor() {
   const copyBtn = document.getElementById("copy-url");
   if (copyBtn) {
     copyBtn.addEventListener("click", () => {
-      const url = \`https://freesurf.tools/\${currentUser.username}\`;
+      const url = \`https://freesurf.tools/@\${currentUser.username}\`;
       navigator.clipboard.writeText(url).then(() => {
         copyBtn.textContent = "Copied!";
         setTimeout(() => { copyBtn.textContent = "Copy"; }, 2000);
@@ -1124,7 +1124,7 @@ async function checkUsername(username, statusEl) {
     if (!input || input.value !== username) return;
 
     if (res.available) {
-      statusEl.textContent = "\\u2713 freesurf.tools/" + username + " is available!";
+      statusEl.textContent = "\\u2713 freesurf.tools/@" + username + " is available!";
       statusEl.style.color = "var(--success)";
       usernameAvailable = true;
     } else {
@@ -1673,6 +1673,7 @@ export default config;
     .wrap { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
     h1 { font-size: 2rem; margin-bottom: 8px; }
     h2 { font-size: 1.25rem; margin-top: 32px; color: var(--accent); }
+    h3 { font-size: 1rem; margin-top: 20px; margin-bottom: 4px; color: var(--text); }
     p, li { color: var(--muted); font-size: 0.95rem; margin: 8px 0; }
     ul { padding-left: 20px; }
     .updated { font-size: 0.85rem; color: #5f6b7a; margin-bottom: 32px; }
@@ -1685,14 +1686,14 @@ export default config;
 <body>
   <div class="wrap">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 9, 2026</p>
+    <p class="updated">Last updated: September 17, 2026</p>
 
     <div class="entity">
       FreeSurf is a product of <strong>Planting Moon LLC</strong>, located at 5830 E 2nd St, Ste 7000 #35119, Casper, Wyoming 82609.<br />
       Contact: <a href="mailto:support@freesurf.tools">support@freesurf.tools</a>
     </div>
 
-    <p>This Privacy Policy explains how FreeSurf collects, uses, stores, and shares information when you use our apps, websites, and services. FreeSurf provides free utility tools including invoice generation, link-in-bio pages, social media cross-posting, text-to-speech reading, and related services.</p>
+    <p>This Privacy Policy explains how FreeSurf collects, uses, stores, and shares information when you use our apps, websites, and services. FreeSurf provides free utility tools including invoice generation, link-in-bio pages, social media cross-posting, text-to-speech reading, a contractor network, and related services.</p>
 
     <h2>1. Information We Collect</h2>
 
@@ -1710,6 +1711,11 @@ export default config;
     recognize you and, if you opt in, to send the Feedfree Digest or product updates. We do not need your full name to
     operate the service, so we avoid storing additional profile details (such as your name or photo) from these sign-in
     providers where possible.</p>
+
+    <p><strong>Contractor network.</strong> If you use the FreeSurf contractor network, we collect what you provide. For <strong>contractors</strong>: display name, company, email, phone, website, bio, services offered, service area, and years of experience — this information is published publicly on your profile and is visible to anyone, including search engines. For <strong>clients</strong>: the name, email, phone, postcode, and request details you submit when contacting a contractor; we pass these to the contractor you selected so they can respond.</p>
+
+    <p><strong>Consent records.</strong> When you accept our <a href="/terms">Terms of Use</a>, we record which version you accepted, the date and time, your IP address, and your browser's user agent. We keep this so we can evidence that an agreement was formed and defend legal claims.</p>
+    <p>An IP address is personal data. For consent records we rely on our <strong>legitimate interests</strong> (and, where applicable, legal obligation) as the lawful basis — <em>not</em> consent itself, because a record that proves consent cannot rest on consent. We retain consent records for up to 3 years from the date of acceptance and then delete them. You can ask for a copy of, or the deletion of, your consent record at any time (see section 7).</p>
 
     <span id="ai-processing"></span>
     <p><strong>AI Processing:</strong> Some FreeSurf tools use AI to generate results. Before any of your content is sent to an AI provider, the app asks for your permission and explains what is being sent. FreeSurf is currently subscription-first and does not run third-party advertising. AI content is sent only to the provider required to produce the result you requested and is transmitted through our own servers. This section explains where AI models run, what we send to them, and what happens to the results.</p>
@@ -1738,6 +1744,8 @@ export default config;
       <li>Sync your data across devices when signed in</li>
       <li>Respond to support requests</li>
       <li>Send optional product updates or newsletters (only if you opt in)</li>
+      <li>Operate the contractor network — publish contractor profiles and deliver client requests to the contractor you selected</li>
+      <li>Record your acceptance of our Terms of Use (see section 1)</li>
       <li>Maintain security and prevent abuse</li>
     </ul>
     <p>We do not sell personal information. We do not use your invoice data, link profiles, posts, or AI-generated content for advertising purposes.</p>
@@ -1779,6 +1787,9 @@ export default config;
       for cross-device access. See the AI Processing section above.</li>
       <li><strong>No model training:</strong> User content processed by our AI models is never used to train, fine-tune, or improve the models. Transcripts, audio, and images are used strictly for immediate real-time output.</li>
       <li><strong>Support requests:</strong> May be retained to resolve issues and document outcomes.</li>
+      <li><strong>Contractor profiles:</strong> Retained while your profile is published and until you ask us to remove it. Profile content is public, so third-party copies (including search engine caches) may persist independently.</li>
+      <li><strong>Client requests:</strong> Retained so the contractor you contacted can follow up and keep a record of the job, then deleted.</li>
+      <li><strong>Consent records:</strong> Retained for up to 3 years from acceptance to evidence the agreement and defend claims, then deleted. See section 1.</li>
     </ul>
 
     <h2>7. GDPR &amp; CCPA Rights</h2>
@@ -1789,6 +1800,7 @@ export default config;
       <li><strong>Right to opt out:</strong> Opt out of personalized advertising via your device's privacy settings or by limiting ad tracking.</li>
       <li><strong>Right to data portability:</strong> Request your data in a structured, machine-readable format.</li>
     </ul>
+    <p>These rights apply to your consent records as well, including the IP address and user agent stored with them. If you have a public contractor profile, note that we can remove it from FreeSurf, but we cannot remove copies that search engines or other third parties have already made.</p>
     <p>To exercise these rights, contact us at <a href="mailto:support@freesurf.tools">support@freesurf.tools</a>. We will respond within 30 days. For EEA users, you also have the right to lodge a complaint with your local data protection authority.</p>
 
     <h2>8. Children's Privacy</h2>
@@ -2001,6 +2013,7 @@ export default config;
     .wrap { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
     h1 { font-size: 2rem; margin-bottom: 8px; }
     h2 { font-size: 1.25rem; margin-top: 32px; color: var(--accent); }
+    h3 { font-size: 1rem; margin-top: 20px; margin-bottom: 4px; color: var(--text); }
     p, li { color: var(--muted); font-size: 0.95rem; margin: 8px 0; }
     ul { padding-left: 20px; }
     .updated { font-size: 0.85rem; color: #5f6b7a; margin-bottom: 24px; }
@@ -2013,14 +2026,14 @@ export default config;
 <body>
   <div class="wrap">
     <h1>Terms of Use</h1>
-    <p class="updated">Last updated: August 2, 2026</p>
+    <p class="updated">Last updated: September 17, 2026</p>
 
     <div class="entity">
       FreeSurf is a product of <strong>Planting Moon LLC</strong>, located at 5830 E 2nd St, Ste 7000 #35119, Casper, Wyoming 82609.<br />
       Contact: <a href="mailto:support@freesurf.tools">support@freesurf.tools</a>
     </div>
 
-    <p>These Terms of Use govern your access to and use of the FreeSurf apps, websites, and services ("FreeSurf," "we," "our," or "us"). By using FreeSurf, you agree to these Terms of Use and our <a href="/privacy">Privacy Policy</a>.</p>
+    <p>These Terms of Use govern your access to and use of the FreeSurf apps, websites, and services ("FreeSurf," "we," "our," or "us"). By using FreeSurf, you agree to these Terms of Use and our <a href="/privacy">Privacy Policy</a>. If you use the FreeSurf contractor network, section 9 applies to you in addition to the rest of these Terms.</p>
 
     <h2>1. Service Description</h2>
     <p>FreeSurf provides free utility tools for freelancers and small businesses, including:</p>
@@ -2031,6 +2044,7 @@ export default config;
       <li><strong>Natural Reader:</strong> AI text-to-speech reading</li>
       <li><strong>Transcriber:</strong> Speech-to-text transcription</li>
       <li><strong>Calorie Tracker:</strong> Photo-based food nutrition analysis</li>
+      <li><strong>Contractor Network:</strong> A directory that helps clients find and contact contractors and freelancers directly</li>
     </ul>
     <p>Some features use AI systems to generate outputs. AI-generated content may be incomplete, inaccurate, or unsuitable for high-stakes decisions. You are responsible for reviewing and using AI outputs appropriately. FreeSurf does not provide legal, tax, accounting, medical, or nutritional advice.</p>
 
@@ -2063,16 +2077,70 @@ export default config;
     <h2>8. Third-Party Services</h2>
     <p>FreeSurf integrates with third-party platforms and services. Your use of those services may be subject to their respective terms and policies. FreeSurf is not responsible for the content, functionality, or practices of third-party services.</p>
 
-    <h2>9. Disclaimers and Limitation of Liability</h2>
+    <h2>9. The Contractor Network (Marketplace)</h2>
+    <p>FreeSurf operates a free directory that helps clients find contractors and freelancers and contact them directly. <strong>FreeSurf is a directory only.</strong> We are not a party to any agreement you make with another user, we are not the employer, agent, or broker of any contractor, and we do not perform, supervise, inspect, price, or guarantee any work.</p>
+
+    <h3>No verification and no endorsement</h3>
+    <p>Profiles, listings, ratings, reviews, descriptions, service areas, credentials, and any other content are supplied by users or compiled from third-party sources. <strong>We do not verify identity, licensing, certifications, insurance, bonding, criminal background, or the accuracy of any statement in a profile.</strong> Nothing on the platform — including ratings, review counts, "years of experience", badges, or search ranking — is a statement of fact, a professional recommendation, or an endorsement by FreeSurf. Content may be inaccurate, incomplete, or out of date. Treat every profile as an unverified claim.</p>
+
+    <h3>Independent contractors, not our agents</h3>
+    <p>Contractors and freelancers on FreeSurf are independent third parties. Nothing in these Terms creates an employment, agency, partnership, joint venture, or franchise relationship between FreeSurf and any user. Contractors are solely responsible for their own licensing, insurance, taxes, permits, and compliance with applicable law.</p>
+
+    <h3>Your responsibility to do your own due diligence</h3>
+    <p>If you are a client, you are solely responsible for evaluating and selecting a contractor before engaging them. You should independently verify, at a minimum, licensing and registration, insurance and bonding, references and prior work, and a written quote and scope of work. We encourage you to obtain multiple quotes and not to rely on any single profile. If you are a contractor, you are solely responsible for the accuracy of your profile and for the services you provide.</p>
+
+    <h3>Disputes are between you and the other user</h3>
+    <p>Any dispute arising from a job, quote, payment, workmanship, timeline, conduct, or communication is solely between the client and the contractor. <strong>FreeSurf is not a party to those disputes</strong>, has no obligation to mediate, investigate, arbitrate, or resolve them, and is not responsible for any loss arising from them. You agree to pursue any such claim directly against the other user, and you release FreeSurf and its officers, directors, employees, and agents from all claims, demands, and damages of every kind arising out of or connected with those disputes, to the fullest extent permitted by law.</p>
+
+    <h3>Assumption of risk</h3>
+    <p>You understand and accept that hiring or working for someone you met through an online directory carries inherent risk, including poor workmanship, property damage, personal injury, non-payment, fraud, and misrepresentation. You knowingly and voluntarily assume those risks.</p>
+
+    <h3>Communications consent</h3>
+    <p>By submitting a request, or by accepting these Terms on a page that displays a phone number, you consent to being contacted about your request by the contractor you selected and by FreeSurf — including by phone call, text message (SMS/MMS), and email, including through automated means. Consent is not a condition of any purchase. Message and data rates may apply. You may withdraw consent at any time by replying STOP to a text message or by contacting us.</p>
+
+    <h3>No guarantee of results</h3>
+    <p>We do not guarantee that you will find a contractor, receive a quote, be hired, be paid, or achieve any particular result. Appearing in search results is not a measure of quality, and we do not vet, rank, or recommend.</p>
+
+    <h3>Removal and content licence</h3>
+    <p>We may remove, suspend, or restrict any profile or content at any time, for any reason, without notice — including for suspected fraud, abuse, or legal risk — and we are not obliged to publish or retain any listing. By creating a profile you grant FreeSurf a worldwide, non-exclusive, royalty-free licence to host, display, reproduce, and distribute your profile content in connection with operating and promoting the service.</p>
+
+    <h3>Age</h3>
+    <p>You must be at least 18 years old to offer services through FreeSurf or to submit a request.</p>
+
+    <h2>10. Disclaimers and Limitation of Liability</h2>
     <p>FreeSurf is provided on an "as is" and "as available" basis. To the maximum extent permitted by law:</p>
     <ul>
       <li>We disclaim all warranties not expressly stated in these terms.</li>
       <li>We are not liable for indirect, incidental, special, consequential, or punitive damages.</li>
       <li>We are not liable for decisions made based on AI-generated outputs.</li>
       <li>We are not liable for data loss from locally stored content — you should maintain your own backups of important records.</li>
+      <li>We are not liable for the acts, omissions, conduct, work, pricing, or failures of any contractor, freelancer, or client, or for any dispute between users.</li>
+      <li>We are not liable for loss arising from reliance on profile content, ratings, reviews, or search results, all of which are unverified.</li>
+      <li>To the maximum extent permitted by law, our total aggregate liability to you for all claims relating to the service is limited to one hundred US dollars (USD \$100).</li>
     </ul>
+    <p>Nothing in these Terms excludes or limits any liability that cannot lawfully be excluded or limited, including (where applicable) liability for fraud, wilful misconduct, gross negligence, or death or personal injury caused by our negligence.</p>
 
-    <h2>10. Changes</h2>
+    <h2>11. Indemnification</h2>
+    <p>You agree to indemnify, defend, and hold harmless FreeSurf, Planting Moon LLC, and their officers, directors, employees, agents, and contractors from and against any claims, actions, demands, liabilities, damages, losses, judgments, settlements, and expenses (including reasonable legal fees) arising out of or relating to:</p>
+    <ul>
+      <li>your access to or use of the platform;</li>
+      <li>your profile, listings, or other content;</li>
+      <li>your dealings, agreements, or disputes with any other user;</li>
+      <li>the services you provide or receive, including any injury, property damage, or non-payment;</li>
+      <li>your breach of these Terms; or</li>
+      <li>your violation of any law or third-party right.</li>
+    </ul>
+    <p>We may take over the exclusive defence and control of any matter subject to indemnification, in which case you agree to cooperate with us.</p>
+
+    <!-- Included deliberately. Jurisdiction-sensitive and NOT enforceable
+         against consumers in the EU (mandatory consumer forum rules), so it
+         still needs counsel review before launch. -->
+    <h2>12. Governing Law and Dispute Resolution</h2>
+    <p>These Terms are governed by the laws of the State of Wyoming, United States, without regard to its conflict-of-laws rules. Subject to the paragraph below, you and FreeSurf agree to resolve any dispute arising out of or relating to these Terms or the service through final and binding individual arbitration, and you and FreeSurf each waive the right to a trial by jury and to participate in any class, collective, or representative action.</p>
+    <p>You may opt out of arbitration by sending written notice to <a href="mailto:support@freesurf.tools">support@freesurf.tools</a> within 30 days of first accepting these Terms. If you opt out, or if the arbitration provision is found unenforceable, disputes will be brought exclusively in the state or federal courts located in Wyoming, and you consent to venue there.</p>
+    <p>Nothing in this section prevents either party from seeking injunctive or other equitable relief in a court of competent jurisdiction, or from bringing an individual claim in small-claims court.</p>
+
+    <h2>13. Changes</h2>
     <p>We may update these Terms of Use from time to time. Material changes will be noted with an updated effective date. Continued use of FreeSurf after changes constitutes acceptance of the updated terms.</p>
 
     <hr />

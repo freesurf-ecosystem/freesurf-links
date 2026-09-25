@@ -6,7 +6,7 @@ workers_dev = true
 # Custom domains
 routes = [
   { pattern = "links.freesurf.tools/*", zone_name = "freesurf.tools" },
-  { pattern = "freesurf.tools/*", zone_name = "freesurf.tools" }
+  { pattern = "freesurf.tools/@*", zone_name = "freesurf.tools" }
 ]
 
 # R2 bucket for avatar images only
