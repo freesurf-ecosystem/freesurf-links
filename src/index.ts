@@ -232,10 +232,9 @@ async function handleApi(
     }
   }
 
-  // ---- Auth routes ----
-  // Authentication is handled by the central auth service at auth.freesurf.tools.
-  // The dashboard uses cross-domain cookie-based session sharing.
-  // The Worker validates the resulting JWT on authenticated API calls.
+  // ---- Auth ----
+  // Authentication is per-app; the shared Supabase project is the user database.
+  // The Worker validates the resulting session JWT on authenticated API calls.
 
   // GET /api/username/check/:username — public availability check
   const usernameCheckMatch = path.match(/^\/api\/username\/check\/([a-z0-9._-]{3,30})$/);
