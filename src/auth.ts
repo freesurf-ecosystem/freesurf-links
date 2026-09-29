@@ -6,19 +6,22 @@ function base64urlDecode(str: string): Uint8Array {
   return Uint8Array.from(binary, (c) => c.charCodeAt(0));
 }
 
+/** A JWKS entry: a JsonWebKey that also carries `kid` (absent from the DOM lib type). */
+type JWK = JsonWebKey & { kid?: string };
+
 interface CachedJWKS {
-  keys: JsonWebKey[];
+  keys: JWK[];
   expiresAt: number;
 }
 let _jwksCache: CachedJWKS | null = null;
 
-async function fetchJWKS(supabaseUrl: string): Promise<JsonWebKey[]> {
+async function fetchJWKS(supabaseUrl: string): Promise<JWK[]> {
   if (_jwksCache && Date.now() < _jwksCache.expiresAt) {
     return _jwksCache.keys;
   }
   const res = await fetch(`${supabaseUrl}/auth/v1/.well-known/jwks.json`);
   if (!res.ok) throw new Error(`JWKS fetch failed: ${res.status}`);
-  const data = (await res.json()) as { keys: JsonWebKey[] };
+  const data = (await res.json()) as { keys: JWK[] };
   _jwksCache = { keys: data.keys, expiresAt: Date.now() + 3600_000 };
   return data.keys;
 }
@@ -97,7 +100,7 @@ export async function validateSupabaseJWT(
         // ECDSA
         cryptoKey = await crypto.subtle.importKey(
           "jwk", jwk,
-          { name: "ECDSA", namedCurve: algInfo.namedCurve },
+          { name: "ECDSA", namedCurve: algInfo.namedCurve as string },
           false, ["verify"]
         );
         const valid = await crypto.subtle.verify(
@@ -116,7 +119,7 @@ export async function validateSupabaseJWT(
           false, ["verify"]
         );
         const valid = await crypto.subtle.verify(
-          algInfo.name as AlgorithmIdentifier,
+          algInfo.name as Parameters<typeof crypto.subtle.verify>[0],
           cryptoKey, signature, data
         );
         if (!valid) {
